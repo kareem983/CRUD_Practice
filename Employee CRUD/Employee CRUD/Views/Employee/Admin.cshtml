@@ -1,7 +1,7 @@
 ﻿@model List<Employee_CRUD.Models.Employee>
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Admin";
 }
 
 <br />
@@ -32,7 +32,7 @@
                 <td>@item.Government.name</td>
                 <td>@item.Department.name</td>
                 <td>@item.village.name</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { nationalId = item.national_id })</td>
+                <td>@Html.ActionLink("Delete", "Admin", new { nationalId = item.national_id })</td>
             </tr>
         }
 

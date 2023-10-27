@@ -69,7 +69,7 @@ namespace Employee_CRUD.Controllers
             return View();
         }
 
-        public ActionResult Delete(String nationalId="0")
+        public ActionResult Admin(String nationalId="0")
         {
             if (nationalId != "0")
             {
