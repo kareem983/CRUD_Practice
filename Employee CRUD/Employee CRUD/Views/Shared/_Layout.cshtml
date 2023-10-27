@@ -25,6 +25,9 @@
             <li class="nav-item">
                 @Html.ActionLink("Edit Employee", "Edit", "Employee", null, new { @class = "nav-link" })
             </li>
+            <li class="nav-item">
+                @Html.ActionLink("Admin", "Delete", "Employee", null, new { @class = "nav-link" })
+            </li>
         </ul>
     </nav>
 
@@ -32,8 +35,9 @@
     <div class="masthead">
         @RenderBody()
     </div>
-
-
+    <br />
+    <br />
+    
     <div class="container body-content">
         <p>Copyright &copy; @DateTime.Now.Year - All right reserved by The Employee System</p>
     </div>

@@ -28,9 +28,14 @@ namespace Employee_CRUD.Controllers
         {
             if (dataIsValid(employee))
             {
-                DBContext.Employees.Add(employee);
-                DBContext.SaveChanges();
-                return RedirectToAction("Home");
+                Employee serarchedEmp = DBContext.Employees.Where(n => n.national_id == employee.national_id).FirstOrDefault();
+                if (serarchedEmp == null)
+                {
+                    DBContext.Employees.Add(employee);
+                    DBContext.SaveChanges();
+                    return RedirectToAction("Home");
+                }
+                ViewBag.ExistErrorMsg = "The Employee with this National ID already exist!";
             }
 
             refreshLocationData();
@@ -63,6 +68,22 @@ namespace Employee_CRUD.Controllers
             refreshLocationData();
             return View();
         }
+
+        public ActionResult Delete(String nationalId="0")
+        {
+            if (nationalId != "0")
+            {
+                Employee employee = DBContext.Employees.Where(n => n.national_id == nationalId).FirstOrDefault();
+                DBContext.Employees.Remove(employee);
+                DBContext.SaveChanges();
+                return RedirectToAction("Home");
+            }
+
+            return View(DBContext.Employees.ToList());
+        }
+
+       
+
 
 
         // Helper Methods

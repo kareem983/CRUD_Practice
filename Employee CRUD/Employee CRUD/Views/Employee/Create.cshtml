@@ -4,62 +4,71 @@
 @{
     ViewBag.Title = "Create Employee";
 }
-
+<br />
+<div class="container body-content">
+    <h5>Create Employee</h5>
+</div>
 <form method="post">
     <br />
     <div class="container mt-3">
         <table class="table">
             <tr>
-                <td>@Html.LabelFor(n => n.name)</td>
+                <th>@Html.LabelFor(n => n.name)</th>
                 <td>@Html.TextBoxFor(n => n.name, new { @class = "form-control" })</td>
                 <td>@Html.ValidationMessageFor(n => n.name)</td>
             </tr>
 
             <tr>
-                <td>@Html.LabelFor(n => n.national_id)</td>
+                <th>@Html.LabelFor(n => n.national_id)</th>
                 <td>@Html.TextBoxFor(n => n.national_id, new { @class = "form-control" })</td>
                 <td>@Html.ValidationMessageFor(n => n.national_id)</td>
             </tr>
 
             <tr>
-                <td>@Html.LabelFor(n => n.phone_number)</td>
+                <td></td>
+                <td></td>
+                <td>@ViewBag.ExistErrorMsg</td>
+            </tr>
+
+            <tr>
+                <th>@Html.LabelFor(n => n.phone_number)</th>
                 <td>@Html.TextBoxFor(n => n.phone_number, new { @class = "form-control" })</td>
                 <td>@Html.ValidationMessageFor(n => n.phone_number)</td>
             </tr>
 
 
             <tr>
-                <td>@Html.LabelFor(n => n.age)</td>
+                <th>@Html.LabelFor(n => n.age)</th>
                 <td>@Html.EditorFor(n => n.age, new { @class = "form-control" })</td>
                 <td>@Html.ValidationMessageFor(n => n.age)</td>
             </tr>
 
             <tr>
-                <td>@Html.LabelFor(n => n.salary)</td>
+                <th>@Html.LabelFor(n => n.salary)</th>
                 <td>@Html.TextBoxFor(n => n.salary, new { @class = "form-control" })</td>
                 <td>@Html.ValidationMessageFor(n => n.salary)</td>
             </tr>
 
             <tr>
-                <td>@Html.CheckBoxFor(n => n.married, new { @class = "form-check-input" }) @Html.LabelFor(n => n.married)</td>
+                <th>@Html.CheckBoxFor(n => n.married, new { @class = "form-check-input" }) @Html.LabelFor(n => n.married)</th>
                 <td></td>
                 <td></td>
             </tr>
 
             <tr>
-                <td>@Html.LabelFor(n => n.gov_id)</td>
+                <th>@Html.LabelFor(n => n.gov_id)</th>
                 <td>@Html.DropDownListFor(n => n.gov_id, (SelectList)ViewBag.govs, new { @class = "form-select form-select-lg" })</td>
                 <td>@Html.ValidationMessageFor(n => n.gov_id)</td>
             </tr>
 
             <tr>
-                <td>@Html.LabelFor(n => n.dept_id)</td>
+                <th>@Html.LabelFor(n => n.dept_id)</th>
                 <td>@Html.DropDownListFor(n => n.dept_id, (SelectList)ViewBag.depts, new { @class = "form-select form-select-lg" })</td>
                 <td>@ViewBag.deptErrorMsg</td>
             </tr>
 
             <tr>
-                <td>@Html.LabelFor(n => n.village_id)</td>
+                <th>@Html.LabelFor(n => n.village_id)</th>
                 <td>@Html.DropDownListFor(n => n.village_id, (SelectList)ViewBag.villages, new { @class = "form-select form-select-lg" })</td>
                 <td>@ViewBag.villageErrorMsg</td>
             </tr>
@@ -74,3 +83,4 @@
         </table>
     </div>
 </form>
+

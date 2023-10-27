@@ -1,0 +1,40 @@
+﻿@model List<Employee_CRUD.Models.Employee>
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<br />
+<div class="container body-content">
+    <h5>Admin Center</h5>
+</div>
+<div class="container mt-3">
+    <table class="table">
+        <tr>
+            <th>@Html.LabelFor(n => n[0].name)</th>
+            <th>@Html.LabelFor(n => n[0].national_id)</th>
+            <th>@Html.LabelFor(n => n[0].phone_number)</th>
+            <th>@Html.LabelFor(n => n[0].age)</th>
+            <th>@Html.LabelFor(n => n[0].married)</th>
+            <th>@Html.LabelFor(n => n[0].gov_id)</th>
+            <th>@Html.LabelFor(n => n[0].dept_id)</th>
+            <th>@Html.LabelFor(n => n[0].village_id)</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.national_id</td>
+                <td>@item.phone_number</td>
+                <td>@item.age</td>
+                <td>@item.married</td>
+                <td>@item.Government.name</td>
+                <td>@item.Department.name</td>
+                <td>@item.village.name</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { nationalId = item.national_id })</td>
+            </tr>
+        }
+
+    </table>
+</div>
