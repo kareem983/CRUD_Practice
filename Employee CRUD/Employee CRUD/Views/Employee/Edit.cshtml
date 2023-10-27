@@ -2,13 +2,13 @@
 
 
 @{
-    ViewBag.Title = "Create Employee";
+    ViewBag.Title = "Edit Employee";
     Layout = "~/Views/Shared/_layout_temp.cshtml";
 }
 
 
 <form method="post">
-    <br/> 
+    <br />
     <table>
         <tr>
             <td>@Html.LabelFor(n => n.name)</td>
@@ -63,12 +63,18 @@
             <td>@ViewBag.villageErrorMsg</td>
         </tr>
 
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit" /></td>
+            <td></td>
+        </tr>
 
         <tr>
             <td></td>
-            <td><input type="submit" value="create"/></td>
+            <td>@ViewBag.notExistErrorMsg</td>
             <td></td>
         </tr>
 
     </table>
 </form>
+
