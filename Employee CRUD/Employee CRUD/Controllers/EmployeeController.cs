@@ -37,9 +37,9 @@ namespace Employee_CRUD.Controllers
                 {
                     if (village.dept_id == employee.dept_id)
                     {
-                        DBContext.Employees.Add(employee);
+                       /* DBContext.Employees.Add(employee);
                         DBContext.SaveChanges();
-                        return RedirectToAction("Home");
+                        */return RedirectToAction("Home");
                     }
                     else
                         ViewBag.villageErrorMsg = "The Department doesn't have the selected Village";

@@ -20,13 +20,13 @@ namespace Employee_CRUD.Models
 
         [Required(ErrorMessage = "*Required")]
         [StringLength(14, MinimumLength = 14, ErrorMessage = "The Employee National ID must be 14 Digit")]
-        [RegularExpression(@"[2-3][0-9]+", ErrorMessage = "The Employee National ID must start with 2 OR 3")]
+        [RegularExpression(@"[2-3][0-9]+", ErrorMessage = "The Employee National ID must start with 2 OR 3 and don't have special characters")]
         [Display(Name = "National ID")]
         public string national_id { get; set; }
 
         [Required(ErrorMessage = "*Required")]
+        [RegularExpression(@"[0][1][0][0-9]+", ErrorMessage = "The Employee Phone Number must start with 010 and don't have special characters")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "The Employee Phone Number must be 11 Digit")]
-        [RegularExpression(@"[0][1][0][0-9]+", ErrorMessage = "The Employee Phone Number must start with 010")]
         [Display(Name = "Phone Number")]
         public string phone_number { get; set; }
 
