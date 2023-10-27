@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Employee_CRUD.Models;
+using System.Data.Entity;
 
 namespace Employee_CRUD.Controllers
 {
@@ -18,10 +19,7 @@ namespace Employee_CRUD.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.govs = new SelectList(DBContext.Governments.ToList(), "id", "name");
-            ViewBag.depts = new SelectList(DBContext.Departments.ToList(), "id", "name");
-            ViewBag.villages = new SelectList(DBContext.villages.ToList(), "id", "name");
-
+            refreshLocationData();
             return View();
         }
 
@@ -35,19 +33,14 @@ namespace Employee_CRUD.Controllers
                 return RedirectToAction("Home");
             }
 
-            ViewBag.govs = new SelectList(DBContext.Governments.ToList(), "id", "name");
-            ViewBag.depts = new SelectList(DBContext.Departments.ToList(), "id", "name");
-            ViewBag.villages = new SelectList(DBContext.villages.ToList(), "id", "name");
+            refreshLocationData();
             return View();
         }
 
 
         public ActionResult Edit()
         {
-            ViewBag.govs = new SelectList(DBContext.Governments.ToList(), "id", "name");
-            ViewBag.depts = new SelectList(DBContext.Departments.ToList(), "id", "name");
-            ViewBag.villages = new SelectList(DBContext.villages.ToList(), "id", "name");
-
+            refreshLocationData();
             return View();
         }
 
@@ -59,16 +52,7 @@ namespace Employee_CRUD.Controllers
                 Employee employee = DBContext.Employees.Where(n => n.national_id == emp.national_id).FirstOrDefault();
                 if (employee != null)
                 {
-                    employee.name = emp.name;
-                    employee.national_id = emp.national_id;
-                    employee.phone_number = emp.phone_number;
-                    employee.age = emp.age;
-                    employee.salary = emp.salary;
-                    employee.married = emp.married;
-                    employee.salary = emp.salary;
-                    employee.gov_id = emp.gov_id;
-                    employee.dept_id = emp.dept_id;
-                    employee.village_id = emp.village_id;
+                    copyEmployee(employee, emp);
                     DBContext.SaveChanges();
                     return RedirectToAction("Home");
                 }
@@ -76,17 +60,12 @@ namespace Employee_CRUD.Controllers
                 ViewBag.notExistErrorMsg = "The Employee with this National ID isn't exist!";
             }
 
-
-            ViewBag.govs = new SelectList(DBContext.Governments.ToList(), "id", "name");
-            ViewBag.depts = new SelectList(DBContext.Departments.ToList(), "id", "name");
-            ViewBag.villages = new SelectList(DBContext.villages.ToList(), "id", "name");
-
+            refreshLocationData();
             return View();
         }
 
 
-
-        // Helper Method
+        // Helper Methods
         private bool dataIsValid(Employee employee)
         {
             if (ModelState.IsValid)
@@ -108,6 +87,26 @@ namespace Employee_CRUD.Controllers
                     ViewBag.deptErrorMsg = "The Goverment doesn't have the selected department";
             }
             return false;
+        }
+
+        public void refreshLocationData()
+        {
+            ViewBag.govs = new SelectList(DBContext.Governments.ToList(), "id", "name");
+            ViewBag.depts = new SelectList(DBContext.Departments.ToList(), "id", "name");
+            ViewBag.villages = new SelectList(DBContext.villages.ToList(), "id", "name");
+        }
+        public void copyEmployee(Employee employee, Employee emp)
+        {
+            employee.name = emp.name;
+            employee.national_id = emp.national_id;
+            employee.phone_number = emp.phone_number;
+            employee.age = emp.age;
+            employee.salary = emp.salary;
+            employee.married = emp.married;
+            employee.salary = emp.salary;
+            employee.gov_id = emp.gov_id;
+            employee.dept_id = emp.dept_id;
+            employee.village_id = emp.village_id;
         }
 
 

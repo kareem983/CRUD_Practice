@@ -3,72 +3,74 @@
 
 @{
     ViewBag.Title = "Create Employee";
-    Layout = "~/Views/Shared/_layout_temp.cshtml";
 }
 
-
 <form method="post">
-    <br/> 
-    <table>
-        <tr>
-            <td>@Html.LabelFor(n => n.name)</td>
-            <td>@Html.TextBoxFor(n => n.name)</td>
-            <td>@Html.ValidationMessageFor(n => n.name)</td>
-        </tr>
+    <br />
+    <div class="container mt-3">
+        <table class="table">
+            <tr>
+                <td>@Html.LabelFor(n => n.name)</td>
+                <td>@Html.TextBoxFor(n => n.name, new { @class = "form-control" })</td>
+                <td>@Html.ValidationMessageFor(n => n.name)</td>
+            </tr>
 
-        <tr>
-            <td>@Html.LabelFor(n => n.national_id)</td>
-            <td>@Html.TextBoxFor(n => n.national_id)</td>
-            <td>@Html.ValidationMessageFor(n => n.national_id)</td>
-        </tr>
+            <tr>
+                <td>@Html.LabelFor(n => n.national_id)</td>
+                <td>@Html.TextBoxFor(n => n.national_id, new { @class = "form-control" })</td>
+                <td>@Html.ValidationMessageFor(n => n.national_id)</td>
+            </tr>
 
-        <tr>
-            <td>@Html.LabelFor(n => n.phone_number)</td>
-            <td>@Html.TextBoxFor(n => n.phone_number)</td>
-            <td>@Html.ValidationMessageFor(n => n.phone_number)</td>
-        </tr>
-
-
-        <tr>
-            <td>@Html.LabelFor(n => n.age)</td>
-            <td>@Html.EditorFor(n => n.age)</td>
-            <td>@Html.ValidationMessageFor(n => n.age)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.LabelFor(n => n.salary)</td>
-            <td>@Html.TextBoxFor(n => n.salary)</td>
-            <td>@Html.ValidationMessageFor(n => n.salary)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.CheckBoxFor(n => n.married) @Html.LabelFor(n => n.married)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.LabelFor(n => n.gov_id)</td>
-            <td>@Html.DropDownListFor(n => n.gov_id, (SelectList)ViewBag.govs)</td>
-            <td>@Html.ValidationMessageFor(n => n.gov_id)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.LabelFor(n => n.dept_id)</td>
-            <td>@Html.DropDownListFor(n => n.dept_id, (SelectList)ViewBag.depts)</td>
-            <td>@ViewBag.deptErrorMsg</td>
-        </tr>
-
-        <tr>
-            <td>@Html.LabelFor(n => n.village_id)</td>
-            <td>@Html.DropDownListFor(n => n.village_id, (SelectList)ViewBag.villages)</td>
-            <td>@ViewBag.villageErrorMsg</td>
-        </tr>
+            <tr>
+                <td>@Html.LabelFor(n => n.phone_number)</td>
+                <td>@Html.TextBoxFor(n => n.phone_number, new { @class = "form-control" })</td>
+                <td>@Html.ValidationMessageFor(n => n.phone_number)</td>
+            </tr>
 
 
-        <tr>
-            <td></td>
-            <td><input type="submit" value="create"/></td>
-            <td></td>
-        </tr>
+            <tr>
+                <td>@Html.LabelFor(n => n.age)</td>
+                <td>@Html.EditorFor(n => n.age, new { @class = "form-control" })</td>
+                <td>@Html.ValidationMessageFor(n => n.age)</td>
+            </tr>
 
-    </table>
+            <tr>
+                <td>@Html.LabelFor(n => n.salary)</td>
+                <td>@Html.TextBoxFor(n => n.salary, new { @class = "form-control" })</td>
+                <td>@Html.ValidationMessageFor(n => n.salary)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.CheckBoxFor(n => n.married, new { @class = "form-check-input" }) @Html.LabelFor(n => n.married)</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(n => n.gov_id)</td>
+                <td>@Html.DropDownListFor(n => n.gov_id, (SelectList)ViewBag.govs, new { @class = "form-select form-select-lg" })</td>
+                <td>@Html.ValidationMessageFor(n => n.gov_id)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(n => n.dept_id)</td>
+                <td>@Html.DropDownListFor(n => n.dept_id, (SelectList)ViewBag.depts, new { @class = "form-select form-select-lg" })</td>
+                <td>@ViewBag.deptErrorMsg</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(n => n.village_id)</td>
+                <td>@Html.DropDownListFor(n => n.village_id, (SelectList)ViewBag.villages, new { @class = "form-select form-select-lg" })</td>
+                <td>@ViewBag.villageErrorMsg</td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="create" class="btn btn-primary" /></td>
+                <td></td>
+            </tr>
+
+        </table>
+    </div>
 </form>
