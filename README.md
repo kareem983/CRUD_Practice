@@ -18,7 +18,7 @@ The Website Entities Divided Into (Employee , Government, Department, Villages):
   <summary>ERD</summary>
 <p>
 
-![Employee CRUD ERD](https://github.com/kareem983/CRUD_Practice/assets/52586356/3c45eb40-70a9-42fa-bd42-dddf5ffec62c)
+![Employee CRUD ERD](https://github.com/kareem983/CRUD_Practice/assets/52586356/ab7f69c2-ece2-4831-89de-0e647a1376a1)
 
 </p>
 </details>
@@ -26,8 +26,8 @@ The Website Entities Divided Into (Employee , Government, Department, Villages):
 <details>
   <summary>Schema</summary>
 <p>
-  
-![Employee CRUD Schema](https://github.com/kareem983/CRUD_Practice/assets/52586356/195472fc-12ca-4081-a4e0-d3653412a9ad)
+
+![Employee CRUD Schema](https://github.com/kareem983/CRUD_Practice/assets/52586356/519121b6-ec95-46d0-96c8-e0fa1a4882d6)
 
 </p>
 </details>
