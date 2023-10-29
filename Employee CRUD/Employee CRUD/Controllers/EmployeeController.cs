@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using Employee_CRUD.Models;
 using System.Data.Entity;
+using System.Transactions;
+using MvcReportViewer;
+using Microsoft.Reporting.WebForms;
+using System.Web.UI.WebControls;
 
 namespace Employee_CRUD.Controllers
 {
@@ -26,16 +30,27 @@ namespace Employee_CRUD.Controllers
         [HttpPost]
         public ActionResult Create(Employee employee)
         {
-            if (dataIsValid(employee))
+            using (var scope = DBContext.Database.BeginTransaction())
             {
-                Employee serarchedEmp = DBContext.Employees.Where(n => n.national_id == employee.national_id).FirstOrDefault();
-                if (serarchedEmp == null)
+                try
                 {
-                    DBContext.Employees.Add(employee);
-                    DBContext.SaveChanges();
-                    return RedirectToAction("Home");
+                    if (dataIsValid(employee))
+                    {
+                        Employee serarchedEmp = DBContext.Employees.Where(n => n.national_id == employee.national_id).FirstOrDefault();
+                        if (serarchedEmp == null)
+                        {
+                            DBContext.Employees.Add(employee);
+                            DBContext.SaveChanges();
+                            scope.Commit();
+                            return RedirectToAction("Home");
+                        }
+                        ViewBag.ExistErrorMsg = "The Employee with this National ID already exist!";
+                    }
                 }
-                ViewBag.ExistErrorMsg = "The Employee with this National ID already exist!";
+                catch(Exception)
+                {
+                    scope.Rollback();
+                }
             }
 
             refreshLocationData();
@@ -52,17 +67,27 @@ namespace Employee_CRUD.Controllers
         [HttpPost]
         public ActionResult Edit(Employee emp)
         {
-            if (dataIsValid(emp))
+            using (var scope = DBContext.Database.BeginTransaction())
             {
-                Employee employee = DBContext.Employees.Where(n => n.national_id == emp.national_id).FirstOrDefault();
-                if (employee != null)
+                try
                 {
-                    copyEmployee(employee, emp);
-                    DBContext.SaveChanges();
-                    return RedirectToAction("Home");
+                    if (dataIsValid(emp))
+                    {
+                        Employee employee = DBContext.Employees.Where(n => n.national_id == emp.national_id).FirstOrDefault();
+                        if (employee != null)
+                        {
+                            copyEmployee(employee, emp);
+                            DBContext.SaveChanges();
+                            scope.Commit();
+                            return RedirectToAction("Home");
+                        }
+                        ViewBag.notExistErrorMsg = "The Employee with this National ID isn't exist!";
+                    }
                 }
-
-                ViewBag.notExistErrorMsg = "The Employee with this National ID isn't exist!";
+                catch(Exception)
+                {
+                    scope.Rollback();
+                }
             }
 
             refreshLocationData();
@@ -71,18 +96,31 @@ namespace Employee_CRUD.Controllers
 
         public ActionResult Admin(String nationalId="0")
         {
-            if (nationalId != "0")
+            using (var scope = DBContext.Database.BeginTransaction())
             {
-                Employee employee = DBContext.Employees.Where(n => n.national_id == nationalId).FirstOrDefault();
-                DBContext.Employees.Remove(employee);
-                DBContext.SaveChanges();
-                return RedirectToAction("Home");
+                try
+                {
+                    if (nationalId != "0")
+                    {
+                        Employee employee = DBContext.Employees.Where(n => n.national_id == nationalId).FirstOrDefault();
+                        DBContext.Employees.Remove(employee);
+                        DBContext.SaveChanges();
+                        scope.Commit();
+                        return RedirectToAction("Home");
+                    }
+                }
+                catch(Exception)
+                {
+                    scope.Rollback();
+                }
             }
-
             return View(DBContext.Employees.ToList());
         }
 
-       
+       public ActionResult RDLCReport()
+       {
+            return View();
+       }
 
 
 
