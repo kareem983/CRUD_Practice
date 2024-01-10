@@ -7,7 +7,7 @@ The Website Entities Divided Into (Employee , Government, Department, Villages):
 - **Department** (Department_ID,Department_Name)
 - **Village** (Village_ID,Village_Name)
 
-# Prerequisites
+# Prerequisites 
 1. Install Visual Studio
 2. Install .Net Framework
 4. Install SQL Server Management System
